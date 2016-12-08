@@ -237,14 +237,13 @@ class Paddle extends Sprite {
 
 class Brick extends Sprite {
     lifeLeft: number = 1;
-}
-
-class DoubleBrick extends Sprite {
-    lifeLeft: number = 2;
-
     oneLifeLeft()  {
         this.sprite.classList.remove('doublebrick');
     }
+}
+
+class DoubleBrick extends Brick {
+    lifeLeft: number = 2;
 }
 
 enum GameState {
@@ -382,7 +381,8 @@ class Game {
                 }
 
                 if (wasHit) {
-                    if(--brick.lifeLeft < 1)
+                    --brick.lifeLeft;
+                    if(brick.lifeLeft < 1)
                     {
                         brick.hide();
                     } else {
